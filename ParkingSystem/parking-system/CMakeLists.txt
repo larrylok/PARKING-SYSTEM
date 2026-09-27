@@ -7,8 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # --- SQLite3 -----------------------------------------------------------
 # Bundled as the amalgamation (third_party/sqlite3/sqlite3.c + .h) so the
 # build needs no pkg-config, no vcpkg, no system install of SQLite3.
-# Download the two files from https://www.sqlite.org/download.html and
-# drop them into third_party/sqlite3/ (see the README in that folder).
 set(SQLITE3_AMALGAMATION ${CMAKE_SOURCE_DIR}/third_party/sqlite3/sqlite3.c)
 if(NOT EXISTS ${SQLITE3_AMALGAMATION})
     message(FATAL_ERROR
@@ -23,7 +21,7 @@ target_include_directories(sqlite3 PUBLIC third_party/sqlite3)
 if(CMAKE_C_COMPILER_ID STREQUAL "MSVC")
     target_compile_definitions(sqlite3 PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
-# ------------------------------------------------------------------------
+
 
 set(CORE_SOURCES
     src/Database.cpp
